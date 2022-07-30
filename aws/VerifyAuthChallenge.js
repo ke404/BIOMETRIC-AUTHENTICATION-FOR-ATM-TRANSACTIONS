@@ -1,3 +1,34 @@
+/**
+
+IntitiateAuth (1)
+When the user select on transaction authorization button on the ATM machines
+ the authentication process starts with the Amazon Cognito InitiateAuth API by taking user credentials to the CUSTOM_AUTH.
+
+
+  CUSTOM_CHALLENGE (2)
+After initiating authentication request the Amazon Cognito triggers Auth Challenge
+ Lambda for the user to solve in order for the authentication process to continue
+2.3.3 Biometric Scanner activation (3)
+The biometric scanner is activated and verifies that credentials exist for the identifier
+ and that the relying party matches the one that is bound to the credentials. This is done by a
+  function call navigator.credentials.get API that is present in the ATM devices that support FIDO
+ 
+
+  
+  Authentication response (4)
+The Authentication process continues where the respondToAuthChallenge API sends response to the Amazon Cognito.
+2.3.5 Response to the Auth Challenge Lambda (5)
+Amazon Cognito sends the response to the Verify Auth Challenge Lambda trigger. This trigger extracts the
+ public key from the user profile, parses and validates the credentials response, and if the signature is 
+ valid, it responds with success. This is performed in VerifyAuthChallenge Lambda trigger.
+
+ 
+ Respond to the AuthChallenge (6)
+Lastly, Amazon Cognito sends the control again to Define Auth Challenge to determine the next step. If the
+ results from Verify Auth Challenge indicate a successful response, authentication succeeds and Amazon Cognito 
+ responds with ID, access, and refresh tokens.
+ */
+
 var crypto = require("crypto");
 
 exports.handler = async (event) => {
@@ -74,3 +105,33 @@ function toArrayBuffer(buf, name) {
 
     return buf;
 }
+/**
+
+IntitiateAuth (1)
+When the user select on transaction authorization button on the ATM machines
+ the authentication process starts with the Amazon Cognito InitiateAuth API by taking user credentials to the CUSTOM_AUTH.
+
+
+  CUSTOM_CHALLENGE (2)
+After initiating authentication request the Amazon Cognito triggers Auth Challenge
+ Lambda for the user to solve in order for the authentication process to continue
+2.3.3 Biometric Scanner activation (3)
+The biometric scanner is activated and verifies that credentials exist for the identifier
+ and that the relying party matches the one that is bound to the credentials. This is done by a
+  function call navigator.credentials.get API that is present in the ATM devices that support FIDO
+ 
+
+  
+  Authentication response (4)
+The Authentication process continues where the respondToAuthChallenge API sends response to the Amazon Cognito.
+2.3.5 Response to the Auth Challenge Lambda (5)
+Amazon Cognito sends the response to the Verify Auth Challenge Lambda trigger. This trigger extracts the
+ public key from the user profile, parses and validates the credentials response, and if the signature is 
+ valid, it responds with success. This is performed in VerifyAuthChallenge Lambda trigger.
+
+ 
+ Respond to the AuthChallenge (6)
+Lastly, Amazon Cognito sends the control again to Define Auth Challenge to determine the next step. If the
+ results from Verify Auth Challenge indicate a successful response, authentication succeeds and Amazon Cognito 
+ responds with ID, access, and refresh tokens.
+ */
