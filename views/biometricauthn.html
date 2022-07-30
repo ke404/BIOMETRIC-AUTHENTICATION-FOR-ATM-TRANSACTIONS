@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Biometric system Created Using Amazom Cognito</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/herrjemand/Base64URL-ArrayBuffer@latest/lib/base64url-arraybuffer.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script src="/amazon-cognito-identity.js"></script>
+    <script src="/biometricauthn-client.js"></script>
+    
+    
+
+    
+  </head>
+  <body class="w3-container">
+      <h2>
+        Biometric system Created Using Amazom Cognito
+      </h2>
+      
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1">Register</a></li>
+          <li><a href="#tabs-2">Transact</a></li>
+        </ul>
+        <div id="tabs-1">
+          <input class="w3-input"  type="text" id="reg-username" placeholder="username"/><br>
+          <input class="w3-input"  type="password" id="reg-password" placeholder="password"/><br>
+          <input class="w3-input" type="text" id="reg-email" placeholder="email"/><br>
+          <input class="w3-input" type="text" id="reg-name" placeholder="name"/><br>
+          <button class="w3-btn w3-black" onclick="createCredential()">Not Register?</button> 
+        </div>
+        <div id="tabs-2">
+          <input class="w3-input" type="text" id="login-username" placeholder="username"/><br>
+          <input class="w3-input" type="password" id="login-password" placeholder="password"/><br>
+          <p>Sign-in experience:</p>
+          <input class="w3-radio" type="radio" name="authentication" value="both" checked><label> Complete Transaction with Pin Or Fingerprint</label><br>
+          <input class="w3-radio" type="radio" name="authentication" value="password"><label> Use ATM pin</label><br>
+          <input  class="w3-radio" type="radio" name="authentication" value="fido"><label> Transact with Fingerprint</label><br><br>
+          <button class="w3-btn w3-black" onclick="signIn()">Complete transaction</button> 
+        </div>
+      </div>
+      <br><br>
+      <pre class="" id="idToken"></pre>
+      <pre class="" id="accessToken"></pre>
+      <pre class="" id="refreshToken"></pre>
+  </body>
+</html>
